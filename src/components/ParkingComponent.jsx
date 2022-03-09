@@ -12,7 +12,13 @@ export const ParkingComponent = () => {
   console.log(vType);
   const dispatch = useDispatch();
 
-  const handleCategory = () => {};
+  const handleCategory = (el, id) => {
+    if (el.totalSlots === el.occupiedSlots) {
+      alert("Parking Lot full");
+    } else {
+      alert(`Charges for ${el.category} is ${el.perHourRate} RS per hour.`);
+    }
+  };
 
   return (
     <>
@@ -46,7 +52,7 @@ export const ParkingComponent = () => {
               <div>Vehicle Type : {el.category}</div>
               <div>Total Slots: {el.totalSlots}</div>
               <div>Occupied Slots: {el.occupiedSlots}</div>
-              <button categoryId={el._id} onClick={handleCategory}>
+              <button onClick={() => handleCategory(el, el._id)}>
                 Select Category
               </button>
             </div>
